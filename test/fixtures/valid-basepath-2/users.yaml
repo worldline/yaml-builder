@@ -1,0 +1,55 @@
+swagger: '2.0'
+info:
+  version: '1.3'
+  title: User API
+  descritpion: ' Sample user API spec for test purpose'
+
+schemes:
+  - http
+basePath: /api/v1/
+produces:
+  - application/json 
+paths:
+  /users:
+    get:
+      description: 'Get all users'
+
+    parameters:
+      - $ref: '#/parameters/appName'
+      - $ref: '#/parameters/appVersion'
+
+    responses:
+      '200':
+        description: Successful response
+        schema:
+          $ref: '#/definitions/init'
+      '400':
+        description: Bad request
+        schema:
+          $ref: '#/definitions/error'
+
+    post:
+      description: 'Create a user'
+      parameters:
+        - name: orders
+          in: body
+          description: Order payload
+          required: true
+          schema:
+            title: Orders
+            type: array
+            items:
+              $ref: '#/definitions/Order'
+
+definitions:
+
+  Order:
+    type: object
+    properties:
+      price:
+        type: number
+        format: double
+        example: 100.00
+      label:
+        type: string
+        

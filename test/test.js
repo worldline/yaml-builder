@@ -24,21 +24,60 @@ describe('', function(){
 
     describe('Given a valid set of yaml file', function(){
         it('should compile severals yaml into a single JSON object', function(done){
-            yamlBuilder.configure(__dirname).compile(function(err, result){
+            yamlBuilder.configure(__dirname + '/fixtures/valid').compile(function(err, result){
                 should.not.exist(err);
                 result.should.be.an.Object(); 
-                should.not.exist(result.definitions);
                 done();
             });
         });
 
         it('should not have a defintion object', function(done){
-            yamlBuilder.configure(__dirname).compile(function(err, result){
+            yamlBuilder.configure(__dirname + '/fixtures/valid').compile(function(err, result){
                 should.not.exist(err);
-                result.should.be.an.Object(); 
                 should.not.exist(result.definitions);
                 done();
             });
         });
+
+        it('should handle base path without starting slash', function(done){
+            yamlBuilder.configure(__dirname + '/fixtures/valid-basepath-1').compile(function(err, result){
+                should.not.exist(err);
+                result.should.be.an.Object(); 
+                result.should.not.be.empty();
+                done();
+            });
+        }); 
+
+        it('should handle base path with a trailing slash', function(done){
+            yamlBuilder.configure(__dirname + '/fixtures/valid-basepath-2').compile(function(err, result){
+                should.not.exist(err);
+                result.should.be.an.Object(); 
+                result.should.not.be.empty();
+                done();
+            });
+        }); 
+
+    });
+
+    describe('Give a unvalid Yaml file', function(){
+        it('should compile the valid yaml file(s)', function(done){
+            yamlBuilder.configure(__dirname + '/fixtures/parse-error').compile(function(err, result){
+                should.not.exist(err);
+                result.should.be.an.Object(); 
+                result.should.not.be.empty();
+                done();
+            });
+        });
+
+        it('should log an error if NODE_DEBUG is enabled', function(done){
+            process.env.NODE_DEBUG = true;
+            yamlBuilder.configure(__dirname + '/fixtures/parse-error').compile(function(err, result){
+                should.not.exist(err);
+                result.should.be.an.Object(); 
+                result.should.not.be.empty();
+                done();
+            });
+        });
+ 
     });
 });
