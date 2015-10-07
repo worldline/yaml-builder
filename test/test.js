@@ -27,6 +27,8 @@ describe('', function(){
             yamlBuilder.configure(__dirname + '/fixtures/valid').compile(function(err, result){
                 should.not.exist(err);
                 result.should.be.an.Object(); 
+                result.paths['/api/v1/orders'].should.be.an.Object();
+                result.paths['/api/v1/users'].should.be.an.Object();
                 done();
             });
         });
