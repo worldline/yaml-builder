@@ -20,6 +20,29 @@ describe('', function(){
             }).should.throw(Error);
             done();
         })
+
+        it('should throw an error if root is not a string', function(done){
+            (function(){
+                yamlBuilder.configure({});
+            }).should.throw(Error);
+            done();
+        });
+
+        it('should throw an error if template is not an object', function(done){
+            (function(){
+                yamlBuilder.configure('test', 'test');
+            }).should.throw(Error);
+            done();
+        });
+
+        it('should throw an error if filter is not an array or regexp', function(done){
+            (function(){
+                yamlBuilder.configure('test', {}, {});
+            }).should.throw(Error);
+            done();
+        });
+ 
+ 
     });
 
     describe('Given a valid set of yaml file', function(){
