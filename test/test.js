@@ -82,9 +82,20 @@ describe('', function(){
             });
         }); 
 
+        it('should override result using template', function(done){
+            var template = {info: {version: '2.0', title: 'overrided title'}, basePath: '/home'};
+             
+            yamlBuilder.configure(__dirname + '/fixtures/valid', template).compile(function(err, result){
+                should.not.exist(err);
+                result.info.version.should.equal('2.0');
+                result.basePath.should.equal('/home');
+                done();
+            });
+        });
+
     });
 
-    describe('Give a unvalid Yaml file', function(){
+    describe('Given a unvalid Yaml file', function(){
         it('should compile the valid yaml file(s)', function(done){
             yamlBuilder.configure(__dirname + '/fixtures/parse-error').compile(function(err, result){
                 should.not.exist(err);
