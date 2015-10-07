@@ -93,6 +93,26 @@ describe('', function(){
             });
         });
 
+        it('should filter using whitelist array', function(done){
+            yamlBuilder.configure(__dirname + '/fixtures/valid', null, ['users']).compile(function(err, result){
+                should.not.exist(err);
+                should.not.exist(result.paths['/api/v1/orders']);
+                result.paths['/api/v1/users'].should.be.an.Object();
+                done();
+            });
+ 
+        });
+
+        it('should filter using a regexp', function(done){
+            yamlBuilder.configure(__dirname + '/fixtures/valid', null, /users/).compile(function(err, result){
+                should.not.exist(err);
+                should.not.exist(result.paths['/api/v1/orders']);
+                result.paths['/api/v1/users'].should.be.an.Object();
+                done();
+            });
+ 
+        });
+
     });
 
     describe('Given a unvalid Yaml file', function(){
