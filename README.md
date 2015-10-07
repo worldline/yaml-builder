@@ -2,6 +2,8 @@
 
 | Concatenate and inline reference of several swagger yaml specs
 
+[![Build Status](https://travis-ci.org/worldline/yaml-builder.svg?branch=master)](https://travis-ci.org/worldline/yaml-builder)
+
 ```js
 var builder =  require('yaml-builder');
 
