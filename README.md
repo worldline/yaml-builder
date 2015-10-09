@@ -1,7 +1,5 @@
 # yaml-builder
 
-| Concatenate and inline reference of several swagger yaml specs
-
 [![Build Status](https://travis-ci.org/worldline/yaml-builder.svg?branch=master)](https://travis-ci.org/worldline/yaml-builder)
 
 ```js
@@ -24,7 +22,7 @@ $ npm install --save-dev yaml-builder
 ```
 ## Features
 
-* Find yaml in tree directory structure
+* Find yaml files in tree directory structure
 * Inline the references and base paths to avoid collisions
 * Concatenate the files into a single one
 * Result overriding using a template

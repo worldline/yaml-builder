@@ -1,7 +1,7 @@
 {
   "name": "yaml-builder",
   "version": "1.0.0",
-  "description": "Concanete serveral swagger yaml spec into a single file",
+  "description": "Concatenate serveral swagger yaml spec into a single file",
   "main": "lib/index.js",
   "scripts": {
     "test": "gulp test"
